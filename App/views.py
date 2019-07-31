@@ -4,3 +4,5 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     return HttpResponse("Это пустая страница!")
+def home_page(request):
+    return render(request, 'home_page.html')

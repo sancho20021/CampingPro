@@ -3,14 +3,24 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
+from App.models import Thing
+
+
 def index(request):
     return HttpResponse("Это пустая страница!")
 
 
 def home_page(request):
     return render(request, 'home_page.html')
+
+
+def objects_list(request, type):
+    if request.user.is_authenticated:
+        things = Thing.objects.filter(type=type)
+        return render(request, 'objects_list.html', {'things': things, 'type': type})
+    else:
+        redirect('/login_page')
 
 
 def user_cab(request):

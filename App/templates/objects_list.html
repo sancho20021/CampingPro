@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Список предметов</title>
 </head>
 <body>
-
+    {% if type == 'food' %}
+        <h1>Продукты</h1>
+    {% endif %}
+    {% if type == 'nofood' %}
+        <h1>Снаряжение</h1>
+    {% endif %}
 </body>
 </html>

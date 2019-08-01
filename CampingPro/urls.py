@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from App.views import index, home_page, login_page, register_page, user_cab
+from App.views import index, home_page, login_page, register_page, user_cab, objects_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('home_page', home_page),
     path('login_page', login_page),
     path('register_page', register_page),
-    path('user_cab', user_cab)
+    path('user_cab', user_cab),
+    path('objects_list/<str:type>', objects_list),
 ]

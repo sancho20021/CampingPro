@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая обязанность</title>
+</head>
+<body>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Добавить новую обязанность</h1>
+        <p></p>
+        <h5>Название</h5>
+        <input type="text" name="name">
+        <h5>Описание</h5>
+        <input type="text" name="description">
+        <input type="submit" value="Создать">
+    </form>
+</div>
+</body>
+</html>

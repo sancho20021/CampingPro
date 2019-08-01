@@ -9,3 +9,9 @@ class Thing(models.Model):
     price = models.IntegerField()
     keeper = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
     kol = models.IntegerField(default=0)
+
+
+class Duty(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    keeper = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)

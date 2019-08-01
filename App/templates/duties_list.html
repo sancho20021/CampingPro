@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Обязанности</title>
 </head>
 <body>
+<h1>Обязанности</h1>
+{% for duty in duties %}
+    <p>{{duty.name}} {% if thing.keeper != None %} Ответственный: {{thing.keeper}} {% endif %}</p>
+    <p>{{duty.description}}</p>
+    <form method="POST">
+        {% csrf_token %}
 
+        {% if duty.keeper == None %}
+            <input type="submit" name="take" value="Взять на себя">
+            <input type="hidden" name="duty_id" value="{{duty.id}}">
+        {% endif %}
+
+        {% if is_moder == True %}
+            {% if duty.keeper != None %}
+                <input type="submit" name="remove" value="Снять ответственность">
+                <input type="hidden" name="duty_id" value="{{duty.id}}">
+            {% endif %}
+        {% endif %}
+    </form>
+{% endfor %}
 </body>
 </html>

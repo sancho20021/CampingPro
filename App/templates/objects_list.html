@@ -11,9 +11,26 @@
 {% if type == 'nofood' %}
 <h1>Снаряжение</h1>
 {% endif %}
+
 {% for thing in things %}
-<p>{{thing.name}} Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
-    {{thing.keeper}} {% endif %}</p>
+    <p>{{thing.name}} Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
+        {{thing.keeper}} {% endif %}
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if thing.keeper == None %}
+            <input type="submit" name="take" value="Взять на себя">
+            <input type="hidden" name="thing_id" value="{{thing.id}}">
+        {% endif %}
+
+        {% if is_moder == True %}
+            {% if thing.keeper != None %}
+                <input type="submit" name="remove" value="Снять ответственность">
+                <input type="hidden" name="thing_id" value="{{thing.id}}">
+            {% endif %}
+        {% endif %}
+    </form>
 {% endfor %}
 </body>
 </html>

@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Вещи, которые я должен взять</h1>
+{% for thing in things %}
+<p>{{thing.name}} Цена: {{thing.price}} Количество: {{thing.kol}} Ответственный:
+    {{thing.keeper}}
+</p>
+{% endfor %}
+<h1>Мои обязанности</h1>
+{% for duty in duties %}
+<p>{{duty.name}} Ответственный: {{thing.keeper}}</p>
+<p>{{duty.description}}</p>
+{% endfor %}
 <a href="/logout">Выход</a>
 </body>
 </html>

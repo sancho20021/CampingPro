@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from App.views import index, home_page, login_page, register_page, user_cab, objects_list, logout_page, new_thing
+from App.views import index, home_page, login_page, register_page, user_cab, objects_list, logout_page, new_thing, \
+    duties_list, new_duty
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,6 @@ urlpatterns = [
     path('objects_list/<str:type>', objects_list),
     path('logout', logout_page),
     path('new_thing', new_thing),
+    path('duties_list', duties_list),
+    path('new_duty', new_duty),
 ]

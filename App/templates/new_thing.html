@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый предмет</title>
+</head>
+<body>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Добавить новый предмет</h1>
+        <p></p>
+        <h5>Тип</h5>
+        <input type="text" name="type" id="type" list="types">
+        <datalist id="types">
+            <option value="food">
+                Еда
+            </option>
+            <option value="nofood">
+                Снаряжение
+            </option>
+        </datalist>
+        <h5>Название</h5>
+        <input type="text" name="name">
+        <h5>Цена(в рублях за штуку/кг)</h5>
+        <input type="number" name="price">
+        <h5>Количество(в единицах/килограммах)</h5>
+        <input type="number" name="kol">
+        <input type="submit" value="Создать">
+    </form>
+</div>
+</body>
+</html>

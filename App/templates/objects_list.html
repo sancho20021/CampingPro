@@ -5,11 +5,15 @@
     <title>Список предметов</title>
 </head>
 <body>
-    {% if type == 'food' %}
-        <h1>Продукты</h1>
-    {% endif %}
-    {% if type == 'nofood' %}
-        <h1>Снаряжение</h1>
-    {% endif %}
+{% if type == 'food' %}
+<h1>Продукты</h1>
+{% endif %}
+{% if type == 'nofood' %}
+<h1>Снаряжение</h1>
+{% endif %}
+{% for thing in things %}
+<p>{{thing.name}} Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
+    {{thing.keeper}} {% endif %}</p>
+{% endfor %}
 </body>
 </html>

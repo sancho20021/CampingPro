@@ -15,3 +15,8 @@ class Duty(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     keeper = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
+
+
+class Text(models.Model):
+    name = models.CharField(max_length=255)
+    text = models.TextField()

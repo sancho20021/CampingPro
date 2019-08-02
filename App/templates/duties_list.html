@@ -5,13 +5,22 @@
     <title>Обязанности</title>
 </head>
 <body>
+<a href="/home_page">Главная страница</a>
+<a href="/user_cab">Личный кабинет</a>
+<a href="/objects_list/nofood">Список вещей</a>
+<a href="/duties_list">Список обязанностей</a>
+<a href="/reference">Памятка для участника похода</a>
+<a href="/plan">План похода</a>
+<a href="/logout_page">Выход</a>
 <h1>Обязанности</h1>
+{% if is_moder == True %}
+<a href="/new_duty">Добавить обязанность</a>
+{% endif %}
 {% for duty in duties %}
-    <p>{{duty.name}} {% if thing.keeper != None %} Ответственный: {{thing.keeper}} {% endif %}</p>
-    <p>{{duty.description}}</p>
     <form method="POST">
         {% csrf_token %}
-
+        <h5>{{duty.name}}. {% if duty.keeper != None %}Ответственный: {{duty.keeper}}{% endif %}</h5>
+        <p>{{duty.description}}</p>
         {% if duty.keeper == None %}
             <input type="submit" name="take" value="Взять на себя">
             <input type="hidden" name="duty_id" value="{{duty.id}}">

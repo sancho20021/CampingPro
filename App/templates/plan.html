@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-
+<a href="/home_page">Главная страница</a>
+<a href="/user_cab">Личный кабинет</a>
+<a href="/objects_list/nofood">Список вещей</a>
+<a href="/duties_list">Список обязанностей</a>
+<a href="/reference">Памятка для участника похода</a>
+<a href="/plan">План похода</a>
+<a href="/logout_page">Выход</a>
+<h1>План похода</h1>
+<p>{{text.text}}</p>
+{% if is_moder %}
+<a href="/edit_plan">Редактировать план</a>
+{% endif %}
 </body>
 </html>

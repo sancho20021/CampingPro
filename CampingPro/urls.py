@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from App.views import index, home_page, login_page, register_page, user_cab, objects_list, logout_page, new_thing, \
-    duties_list, new_duty
+    duties_list, new_duty, reference, edit_reference, plan, edit_plan
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +27,12 @@ urlpatterns = [
     path('register_page', register_page),
     path('user_cab', user_cab),
     path('objects_list/<str:type>', objects_list),
-    path('logout', logout_page),
+    path('logout_page', logout_page),
     path('new_thing', new_thing),
     path('duties_list', duties_list),
     path('new_duty', new_duty),
+    path('reference', reference),
+    path('edit_reference', edit_reference),
+    path('plan', plan),
+    path('edit_plan', edit_plan),
 ]

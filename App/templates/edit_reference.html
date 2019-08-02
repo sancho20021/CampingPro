@@ -12,17 +12,11 @@
 <a href="/reference">Памятка для участника похода</a>
 <a href="/plan">План похода</a>
 <a href="/logout_page">Выход</a>
-<h1>Вещи, которые я должен взять</h1>
-{% for thing in things %}
-<h5>{{thing.name}} </h5>
-<p>Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
-    {{thing.keeper}} {% endif %}
-</p>
-{% endfor %}
-<h1>Мои обязанности</h1>
-{% for duty in duties %}
-<h5>{{duty.name}}. {% if duty.keeper != None %}Ответственный: {{duty.keeper}}{% endif %}</h5>
-<p>{{duty.description}}</p>
-{% endfor %}
+<h1>Что нужно взять каждому участнику похода</h1>
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="text">{{text.text}}</textarea>
+    <input type="submit" value="Сохранить">
+</form>
 </body>
 </html>

@@ -4,11 +4,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from App.models import Thing, Duty
+from App.models import Thing, Duty, Text
 
 
 def index(request):
     return HttpResponse("Это пустая страница!")
+
 
 def duties_list(request):
     if request.user.is_authenticated:
@@ -29,7 +30,8 @@ def duties_list(request):
                 duty.save()
             return redirect(request.path_info)
     else:
-        redirect('/login_page')
+        return redirect('/login_page')
+
 
 def new_duty(request):
     if request.method == 'GET':
@@ -41,9 +43,10 @@ def new_duty(request):
         if name == '':
             return HttpResponse("Заполните все поля!")
         duty.name = name
-        duty.description=description
+        duty.description = description
         duty.save()
         return redirect(request.path_info)
+
 
 def new_thing(request):
     if request.method == 'GET':
@@ -103,13 +106,64 @@ def objects_list(request, type):
                 thing.save()
             return redirect(request.path_info)
     else:
-        redirect('/login_page')
+        return redirect('/login_page')
 
 
 def user_cab(request):
     things = Thing.objects.filter(keeper=request.user)
     duties = Duty.objects.filter(keeper=request.user)
-    return render(request, 'user_cab.html', {'things': things, 'duties': duties})
+    is_moder = False
+    if request.user.groups.filter(name='moders').exists():
+        is_moder = True
+    return render(request, 'user_cab.html', {'things': things, 'duties': duties, 'is_moder': is_moder})
+
+
+def reference(request):
+    if request.user.is_authenticated:
+        text = Text.objects.get(name='reference')
+        is_moder = False
+        if request.user.groups.filter(name='moders').exists():
+            is_moder = True
+        return render(request, 'reference.html', {'text': text, 'is_moder': is_moder})
+    else:
+        return redirect('/login_page')
+
+
+def edit_reference(request):
+    if request.user.is_authenticated and request.user.groups.filter(name='moders').exists():
+        text = Text.objects.get(name='reference')
+        if request.method == 'GET':
+            return render(request, 'edit_reference.html', {'text': text})
+        if request.method == 'POST':
+            text.text = request.POST.get('text', '')
+            text.save()
+            return redirect('/reference')
+    else:
+        return redirect('/login_page')
+
+
+def plan(request):
+    if request.user.is_authenticated:
+        text = Text.objects.get(name='plan')
+        is_moder = False
+        if request.user.groups.filter(name='moders').exists():
+            is_moder = True
+        return render(request, 'plan.html', {'text': text, 'is_moder': is_moder})
+    else:
+        return redirect('/login_page')
+
+
+def edit_plan(request):
+    if request.user.is_authenticated and request.user.groups.filter(name='moders').exists():
+        text = Text.objects.get(name='plan')
+        if request.method == 'GET':
+            return render(request, 'edit_plan.html', {'text': text})
+        if request.method == 'POST':
+            text.text = request.POST.get('text', '')
+            text.save()
+            return redirect('/plan')
+    else:
+        return redirect('/login_page')
 
 
 def login_page(request):

@@ -5,20 +5,34 @@
     <title>Список предметов</title>
 </head>
 <body>
+<a href="/home_page">Главная страница</a>
+<a href="/user_cab">Личный кабинет</a>
+<a href="/objects_list/nofood">Список вещей</a>
+<a href="/duties_list">Список обязанностей</a>
+<a href="/reference">Памятка для участника похода</a>
+<a href="/plan">План похода</a>
+<a href="/logout_page">Выход</a>
 {% if type == 'food' %}
 <h1>Продукты</h1>
 {% endif %}
 {% if type == 'nofood' %}
 <h1>Снаряжение</h1>
 {% endif %}
-
+{% if is_moder == True %}
+<a href="/new_thing">Добавить предмет</a>
+<p></p>
+<a href="/objects_list/food">Продукты</a>
+<a href="/objects_list/nofood">Снаряжение</a>
+<p></p>
+{% endif %}
 {% for thing in things %}
-    <p>{{thing.name}} Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
-        {{thing.keeper}} {% endif %}
-    </p>
+
     <form method="POST">
         {% csrf_token %}
-
+        <h5>{{thing.name}} </h5>
+        <p>Цена: {{thing.price}} Количество: {{thing.kol}} {% if thing.keeper != None %} Ответственный:
+            {{thing.keeper}} {% endif %}
+        </p>
         {% if thing.keeper == None %}
             <input type="submit" name="take" value="Взять на себя">
             <input type="hidden" name="thing_id" value="{{thing.id}}">

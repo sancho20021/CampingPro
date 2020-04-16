@@ -1,5 +1,5 @@
 # CampingPro
-It is a simple site to help people organize a hike. 
+It is a simple site to help people organise a hike. 
 
 There are several options:
 

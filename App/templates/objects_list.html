@@ -20,11 +20,11 @@
 {% endif %}
 {% if is_moder == True %}
 <a href="/new_thing">Добавить предмет</a>
+{% endif %}
 <p></p>
 <a href="/objects_list/food">Продукты</a>
 <a href="/objects_list/nofood">Снаряжение</a>
 <p></p>
-{% endif %}
 {% for thing in things %}
 
     <form method="POST">
